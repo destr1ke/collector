@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import signup from "./routes/signup.js";
 import signin from "./routes/signin.js";
+import user from "./routes/user.js";
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/signup", signup);
 app.use("/api/signin", signin);
+app.use("/api/user", user);
 
 mongoose
   .connect(process.env.DB_CONNECTION, {
