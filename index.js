@@ -23,9 +23,9 @@ app.use(
 app.use("/api/signup", signup);
 app.use("/api/signin", signin);
 app.use("/api/user", user);
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/frontend/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 mongoose
