@@ -5,23 +5,27 @@ import dotenv from "dotenv";
 import signup from "./routes/signup.js";
 import signin from "./routes/signin.js";
 import user from "./routes/user.js";
+import { fileURLToPath } from "url";
 
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 
 app.use(express.json());
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
-app.get("/", (req, res) => {
-  res.send("Hello world!");
-});
 app.use("/api/signup", signup);
 app.use("/api/signin", signin);
 app.use("/api/user", user);
+app.use(express.static(path.join(__dirname, "/client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 
 mongoose
   .connect(process.env.DB_CONNECTION, {
