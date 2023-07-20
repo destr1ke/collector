@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import signup from "./routes/signup.js";
 import signin from "./routes/signin.js";
 import user from "./routes/user.js";
+import path from "path";
 import { fileURLToPath } from "url";
 
 dotenv.config();
